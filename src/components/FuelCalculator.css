@@ -1,0 +1,135 @@
+.fuel-calculator {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+}
+
+.fuel-calculator h1 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.fuel-calculator input {
+  transition: all 0.2s ease-in-out;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.fuel-calculator input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.fuel-calculator label {
+  color: #4a5568;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.fuel-calculator table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.fuel-calculator th {
+  background: #f7fafc;
+  color: #2d3748;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.fuel-calculator td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  color: #4a5568;
+}
+
+.fuel-calculator tr:last-child td {
+  border-bottom: none;
+}
+
+.fuel-calculator tr:hover td {
+  background-color: #f7fafc;
+}
+
+.fuel-calculator .bg-yellow-100 {
+  background-color: #fefcbf;
+  font-weight: 500;
+}
+
+.fuel-calculator .bg-green-100 {
+  background-color: #c6f6d5;
+  font-weight: 500;
+}
+
+.fuel-calculator .bg-red-100 {
+  background-color: #fed7d7;
+  border-color: #feb2b2;
+  color: #c53030;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.fuel-calculator .help-text {
+  background: #f7fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  color: #4a5568;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.fuel-calculator .help-text p {
+  margin-bottom: 0.5rem;
+}
+
+.fuel-calculator .help-text p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .fuel-calculator {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .fuel-calculator h1 {
+    font-size: 1.5rem;
+  }
+
+  .fuel-calculator table {
+    font-size: 0.875rem;
+  }
+
+  .fuel-calculator th,
+  .fuel-calculator td {
+    padding: 0.75rem;
+  }
+
+  .fuel-calculator input {
+    max-width: 100%;
+  }
+} 
