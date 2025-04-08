@@ -70,7 +70,7 @@ const FuelCalculator = () => {
     if (!validationError) {
       calculateCosts();
     }
-  }, [kmTraveled, fuelCost, tollCost, tripFrequency, tripsPerPeriod, efficiencyRange]);
+  }, [kmTraveled, fuelCost, tollCost, tripFrequency, tripsPerPeriod, efficiencyRange, selectedVehicle]);
   
   const calculateCosts = () => {
     if (!kmTraveled || !fuelCost) return;
@@ -294,7 +294,10 @@ const FuelCalculator = () => {
                   <td className="bg-green-100">₹{costs.totalCost.toFixed(2)}</td>
                   {row.comparisons.map((diff, idx) => {
                     const comparisonEfficiency = efficiencyRange[idx];
-                    const comparisonCosts = calculateTotalCosts(results.find(r => r.efficiency === comparisonEfficiency).cost);
+                    const comparisonResult = results.find(r => r.efficiency === comparisonEfficiency);
+                    if (!comparisonResult) return <td key={idx}>-</td>;
+                    
+                    const comparisonCosts = calculateTotalCosts(comparisonResult.cost);
                     const totalDiff = costs.totalCost - comparisonCosts.totalCost;
                     return (
                       <td 
