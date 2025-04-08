@@ -281,7 +281,7 @@ const FuelCalculator = () => {
               <th>Efficiency (Km/L)</th>
               <th>Total Cost</th>
               {efficiencyRange.map((eff) => (
-                <th key={eff}>{eff} km/L</th>
+                <th key={eff}>vs {eff} km/L</th>
               ))}
             </tr>
           </thead>
@@ -290,13 +290,22 @@ const FuelCalculator = () => {
               const costs = calculateTotalCosts(row.baseCost);
               return (
                 <tr key={row.efficiency}>
-                  <td className="bg-green-100">{row.efficiency}</td>
+                  <td className="bg-green-100">{row.efficiency} km/L</td>
                   <td className="bg-green-100">₹{costs.totalCost.toFixed(2)}</td>
-                  {row.comparisons.map((diff, idx) => (
-                    <td key={idx} className={diff < 0 ? 'text-green-600' : diff > 0 ? 'text-red-600' : ''}>
-                      {diff > 0 ? '+' : ''}{diff}
-                    </td>
-                  ))}
+                  {row.comparisons.map((diff, idx) => {
+                    const comparisonEfficiency = efficiencyRange[idx];
+                    const comparisonCosts = calculateTotalCosts(results.find(r => r.efficiency === comparisonEfficiency).cost);
+                    const totalDiff = costs.totalCost - comparisonCosts.totalCost;
+                    return (
+                      <td 
+                        key={idx} 
+                        className={totalDiff < 0 ? 'text-green-600' : totalDiff > 0 ? 'text-red-600' : ''}
+                        title={`Total cost difference between ${row.efficiency} km/L and ${comparisonEfficiency} km/L`}
+                      >
+                        {totalDiff > 0 ? '+' : ''}{totalDiff.toFixed(2)}
+                      </td>
+                    );
+                  })}
                 </tr>
               );
             })}
@@ -306,9 +315,10 @@ const FuelCalculator = () => {
       
       <div className="help-text">
         <p>• The top table shows the total fuel cost for different fuel efficiency values.</p>
-        <p>• The comparison matrix shows the cost difference between each efficiency level.</p>
+        <p>• The comparison matrix shows the total cost difference between each efficiency level (including toll costs).</p>
         <p>• Negative values (in green) indicate savings compared to the reference efficiency.</p>
         <p>• Positive values (in red) indicate additional costs compared to the reference efficiency.</p>
+        <p>• Hover over any value to see a detailed comparison between the two efficiency levels.</p>
       </div>
     </div>
   );
